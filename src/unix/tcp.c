@@ -323,6 +323,13 @@ int uv_tcp_simultaneous_accepts(uv_tcp_t* handle, int enable) {
   return 0;
 }
 
+void uv_tcp_start(uv_tcp_t* tcp) {
+  uv__io_start(tcp->loop, &tcp->io_watcher, UV__POLLIN);
+}
+
+void uv_tcp_stop(uv_tcp_t* tcp) {
+  uv__io_stop(tcp->loop, &tcp->io_watcher, UV__POLLIN);
+} 
 
 void uv__tcp_close(uv_tcp_t* handle) {
   uv__stream_close((uv_stream_t*)handle);

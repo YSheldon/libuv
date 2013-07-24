@@ -765,6 +765,14 @@ UV_EXTERN int uv_tcp_connect(uv_connect_t* req, uv_tcp_t* handle,
 UV_EXTERN int uv_tcp_connect6(uv_connect_t* req, uv_tcp_t* handle,
     struct sockaddr_in6 address, uv_connect_cb cb);
 
+/*
+ * Used for turning off the acceptance of new TCP connections for
+ * handling a graceful shutdown.
+ */
+
+UV_EXTERN void uv_tcp_start(uv_tcp_t* tcp);
+UV_EXTERN void uv_tcp_stop(uv_tcp_t* tcp);
+
 /* uv_connect_t is a subclass of uv_req_t */
 struct uv_connect_s {
   UV_REQ_FIELDS
